@@ -1,57 +1,130 @@
 /*
  * Solvers.cpp
  *
+ *
  *  Created on: Jan 24, 2015
  *      Author: Vanacore
  */
+#include <stdlib.h> /* srand, rand */
+#include <time.h>
+#include <fstream>
 #include "Solvers.h"
 
-double * jacobi(const double** A, const double* b, const int& r, const int& c )
+double * jacobi(double** A, double* b, double* x, const int& r, const int& c )
 {
-	//Initiate x with random guess
-	double *x;
+	double* xk1;
+	xk1 = new double[r];
+
+	for(int i=0; i<r; ++i)
+	{
+		xk1[i] = 0.0;
+	}
+
+	return xk1;
+}
+
+
+void randomMatrix()
+{
+
+}
+
+void randomMatrix(int r, int c)
+{
+	double ** A, * b, *x;
+	int ran;
+	double value;
+
+	//Allocate A[r][c]
+	A = new double* [r];
+	for(int i=0; i<r; ++i)
+	{
+		A[i] = new double [c];
+	}
+
+	//Random A values
+	srand ( time(NULL) );
+	for(int i=0; i<r; ++i)
+	{
+		for(int j=0; j<c; ++j)
+		{
+			ran = rand() % 20000 + 1;
+			value = ran / 100.00;
+			A[i][j] = value;
+		}
+	}
+
+	//Diagonal Dominate
+	value = 0.0;
+	for(int i=0; i<r; ++i)
+	{
+		for(int j=0; j<c; ++j)
+		{
+			//Abs value added to value
+			if(A[i][j] < 0.0)
+			{
+				value += -1.0 * A[i][j];
+			}
+			else{
+				value += A[i][j];
+			}
+
+			A[i][i] = value;
+		}
+	}
+
+	//Allocate x
 	x = new double [r];
+
+	//Random x values
+	srand ( time(NULL) );
 	for(int i=0; i<r; ++i)
 	{
-		x[i] = b[i];
+		ran = rand() % 200 + 1;
+		value = ran / 100.00;
+		x[i] = value;
 	}
 
-	/*Solver:
-	 * Main Loop
-	 */
+	//Allocate b
+	b = new double [r];
+
+	//A*x = b
 	for(int i=0; i<r; ++i)
 	{
-		//Reset totals at the top of each iteration
-		double total, totalC;
-		total = totalC = 0;
-
-		//Sum L*x (Lower C*x)
-		for(int j=0; j<(i-1); ++j)
+		value = 0.0;
+		for(int j=0; j<c; ++j)
 		{
-			totalC += A[i][j] * x[j];
+			value+= A[i][j] * x[j];
 		}
-
-		//Subtract L*x from b.
-		total += b[i] - totalC;
-
-		//Sum U*x (Upper C*x)
-		totalC = 0;
-		for(int j=i; j<r; ++j)
-		{
-			totalC += A[i][j] * x[j];
-		}
-
-		//Subtract U*x from b.
-		total += b[i] - totalC;
-
-		// Multiply by D inverse
-		// D^-1(b-C*x)
-		total = total / (1/A[i][i]);
-
-		//New x[i]
-		x[i] = total;
-
+		b[i] = value;
 	}
 
-	return x;
+	//Write to file
+	std::ofstream out;
+	out.open("randomMatrix.txt");
+
+	//row and col
+	out << r << ' ' << c << '\n';
+
+	//A matrix
+	for(int i=0; i<r; ++i )
+	{
+		for(int j=0; j<c; ++j)
+		{
+			out << A[i][j] << ' ';
+		}
+		out << '\n';
+	}
+
+	//b matrix
+	for(int i=0; i<r; ++i)
+	{
+		out << b[i] << ' ';
+	}
+
+
+	out.close();
+
+
+
 }

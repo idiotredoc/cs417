@@ -8,7 +8,10 @@
 #ifndef SOLVERS_H_
 #define SOLVERS_H_
 
-double * jacobi(const double** A, const double* b, const int& r, const int& c);
+double * jacobi(double** A, double* b, double* x, const int& r, const int& c);
+
+void randomMatrix();
+void randomMatrix(int, int);
 
 
 
