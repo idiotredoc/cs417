@@ -5,6 +5,10 @@
  *      Author: Vanacore
  */
 
+#include <iostream>
+#include "Solvers.h"
 
-
-
+int main()
+{
+	return 0;
+}
