@@ -8,16 +8,42 @@
 #include <stdlib.h> /* srand, rand */
 #include <time.h>
 #include <fstream>
+#include <iostream>
 #include "Solvers.h"
 
 double * jacobi(double** A, double* b, double* x, const int& r, const int& c )
 {
 	double* xk1;
 	xk1 = new double[r];
-
-	for(int i=0; i<r; ++i)
+	for(int i = 0; i < r; ++i)
 	{
 		xk1[i] = 0.0;
+	}
+
+	double total, lowerC, upperC;
+
+	//i loop
+	for(int i=0; i<r; ++i)
+	{
+		total = lowerC = upperC = 0;
+
+		//Sum lowerC
+		for(int j = 0; j < i; ++j)
+		{
+			lowerC += A[i][j] * x[j];
+		}
+
+		//Sum upperC
+		for( int j = (i+1); j < r; ++j)
+		{
+			upperC += A[i][j] * x[j];
+		}
+
+		//Total for iteration
+		total = b[i] - lowerC - upperC;
+
+		//Update xk1[i]
+		xk1[i] = total / A[i][i];
 	}
 
 	return xk1;
@@ -132,7 +158,27 @@ void randomMatrix(int r, int c)
 
 
 	out.close();
+}
 
 
+void printMatrix(double ** A, int r, int c)
+{
+	std::cout << "Matrix:\n";
+	for(int i = 0; i < r; ++i)
+	{
+		for(int j = 0; j < c; ++j)
+		{
+			std::cout << A[i][j] << ' ';
+		}
+	}
+}
 
+
+void printMatrix(double * b, int r)
+{
+	std::cout << "Matrix:\n";
+	for(int i = 0; i < r; ++i)
+	{
+		std::cout << b[i] << ' ';
+	}
 }

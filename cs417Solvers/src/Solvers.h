@@ -13,6 +13,9 @@ double * jacobi(double** A, double* b, double* x, const int& r, const int& c);
 void randomMatrix();
 void randomMatrix(int, int);
 
+void printMatrix(double ** A, int r, int c);
+void printMatrix(double * b, int r);
+
 
 
 #endif /* SOLVERS_H_ */
