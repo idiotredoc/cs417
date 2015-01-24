@@ -85,6 +85,15 @@ void randomMatrix(int r, int c)
 		x[i] = value;
 	}
 
+	//Write X
+	std::ofstream out;
+	out.open("X.txt");
+	for(int i = 0; i < r; ++i)
+	{
+		out << x[i] << '\n';
+	}
+	out.close();
+
 	//Allocate b
 	b = new double [r];
 
@@ -100,7 +109,6 @@ void randomMatrix(int r, int c)
 	}
 
 	//Write to file
-	std::ofstream out;
 	out.open("randomMatrix.txt");
 
 	//row and col
