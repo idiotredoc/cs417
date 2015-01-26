@@ -9,6 +9,7 @@
 #define SOLVERS_H_
 
 double * jacobi(double** A, double* b, double* x, const int& r, const int& c);
+double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c);
 
 void randomMatrix();
 void randomMatrix(int, int);

@@ -49,6 +49,44 @@ double * jacobi(double** A, double* b, double* x, const int& r, const int& c )
 	return xk1;
 }
 
+double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c)
+{
+	double* xk1;
+		xk1 = new double[r];
+		for(int i = 0; i < r; ++i)
+		{
+			xk1[i] = x[i];
+		}
+
+		double total, lowerC, upperC;
+
+		//i loop
+		for(int i=0; i<r; ++i)
+		{
+			total = lowerC = upperC = 0;
+
+			//Sum lowerC
+			for(int j = 0; j < i; ++j)
+			{
+				lowerC += A[i][j] * xk1[j];
+			}
+
+			//Sum upperC
+			for( int j = (i+1); j < r; ++j)
+			{
+				upperC += A[i][j] * x[j];
+			}
+
+			//Total for iteration
+			total = b[i] - lowerC - upperC;
+
+			//Update xk1[i]
+			xk1[i] = total / A[i][i];
+		}
+
+		return xk1;
+}
+
 
 void randomMatrix()
 {
