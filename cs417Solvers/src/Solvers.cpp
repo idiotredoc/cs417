@@ -9,6 +9,7 @@
 #include <time.h>
 #include <fstream>
 #include <iostream>
+#include <cmath>
 #include "Solvers.h"
 
 double * jacobi(double** A, double* b, double* x, const int& r, const int& c )
@@ -225,17 +226,17 @@ void printMatrix(double * b, int r)
 double error(const double* bGuess, const double* bAct, int row)
 {
 	double bGbA,bA, error;
-	error = bGbA = bAct = 0;
+	error = bGbA = bA = 0;
 
 	for(int i = 0; i < row; ++i)
 	{
-		bA += bAct[i] * bAct[i];
+		bA += pow(bAct[i], 2);
 
 		bGbA = bGuess[i] - bAct[i];
-		error += bGbA * bGbA;
+		error += pow(bGbA, 2);
 	}
-	error = (error^1/2) / bA;
-
+	bA = sqrt(bA);
+	error = sqrt(error) / bA;
 
 	return error;
 }
