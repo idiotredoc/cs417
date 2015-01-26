@@ -220,3 +220,22 @@ void printMatrix(double * b, int r)
 		std::cout << b[i] << ' ';
 	}
 }
+
+
+double error(const double* bGuess, const double* bAct, int row)
+{
+	double bGbA,bA, error;
+	error = bGbA = bAct = 0;
+
+	for(int i = 0; i < row; ++i)
+	{
+		bA += bAct[i] * bAct[i];
+
+		bGbA = bGuess[i] - bAct[i];
+		error += bGbA * bGbA;
+	}
+	error = (error^1/2) / bA;
+
+
+	return error;
+}

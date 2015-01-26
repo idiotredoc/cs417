@@ -17,6 +17,7 @@ void randomMatrix(int, int);
 void printMatrix(double ** A, int r, int c);
 void printMatrix(double * b, int r);
 
+double error(const double* bGuess, const double* bAct, int row);
 
 
 #endif /* SOLVERS_H_ */
