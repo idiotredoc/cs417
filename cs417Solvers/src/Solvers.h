@@ -11,6 +11,7 @@
 class ostream;
 
 double * jacobi(double** A, double* b, double* x, const int& r, const int& c);
+void    jacobi2(const double** A, const double* b, double* x, const int& r, const int& c);
 double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c);
 
 void randomMatrix();
