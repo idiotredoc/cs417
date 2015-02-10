@@ -118,6 +118,32 @@ double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c
 		return xk1;
 }
 
+double** emptyMatrix(const int& r, const int& c)
+{
+	double** A;
+	A = new double* [r];
+	for(int i = 0; i < r; ++i)
+	{
+		A = new double [c];
+		for(int j = 0; j < c; ++j)
+		{
+			A[i][j] = 0.0;
+		}
+	}
+
+	return A;
+}
+double* emptyVector(const int& r)
+{
+	double* b;
+	b = new double[r];
+	for(int i = 0; i < r; ++i)
+	{
+		b[i] = 0.0;
+	}
+
+	return b;
+}
 
 void randomMatrix()
 {
@@ -230,7 +256,7 @@ void randomMatrix(int r, int c)
 }
 
 
-void printMatrix(double ** A, int r, int c)
+void printMatrix(const double ** A, int r, int c)
 {
 	std::cout << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
@@ -243,7 +269,7 @@ void printMatrix(double ** A, int r, int c)
 }
 
 
-void printMatrix(double * b, int r)
+void printVector(const double * b, int r)
 {
 	std::cout << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
@@ -252,7 +278,7 @@ void printMatrix(double * b, int r)
 	}
 }
 
-void printMatrix(std::ofstream out, double** A, const int& r, const int& c)
+void printMatrix(std::ofstream out, const double** A, const int& r, const int& c)
 {
 	out << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
@@ -263,7 +289,7 @@ void printMatrix(std::ofstream out, double** A, const int& r, const int& c)
 		}
 	}
 }
-void printMatrix(std::ofstream out, double* b, const int& r)
+void printVector(std::ofstream out, const double* b, const int& r)
 {
 	out << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
@@ -290,3 +316,55 @@ double error(const double* bGuess, const double* bAct, int row)
 
 	return error;
 }
+
+
+void freeMatrix(double** A, const int& r)
+{
+	for(int i = 0; i < r; ++i)
+	{
+		delete [] A[i];
+	}
+	delete [] A;
+}
+
+void freeVector(double* b, const int& r)
+{
+	delete [] b;
+}
+
+
+
+void MaxtrixTranspose(double** A, const int& r, const int& c)
+{
+	double ** Atrans, ** temp;
+	Atrans = emptyMatrix(r, c);
+	for(int i = 0; i < r; ++i)
+	{
+		for(int j = 0; j < c; ++j)
+		{
+			Atrans[c][r] = A[r][c];
+		}
+	}
+	temp = A;
+	A = Atrans;
+	freeMatrix(temp, r);
+
+}
+
+double** Matrixtranspose(const double** A, const int& r, const int& c)
+{
+	double** Atrans;
+	Atrans = emptyMatrix(r, c);
+	for(int i = 0; i < r; ++i)
+		{
+			for(int j = 0; j < c; ++j)
+			{
+				Atrans[c][r] = A[r][c];
+			}
+		}
+	return Atrans;
+}
+
+
+
+

@@ -20,6 +20,5 @@ using std::ifstream;
 int main()
 {
 
-
 	return 0;
 }
