@@ -124,7 +124,7 @@ double** emptyMatrix(const int& r, const int& c)
 	A = new double* [r];
 	for(int i = 0; i < r; ++i)
 	{
-		A = new double [c];
+		A[i] = new double [c];
 		for(int j = 0; j < c; ++j)
 		{
 			A[i][j] = 0.0;
