@@ -30,7 +30,7 @@ void freeMatrix(double** A, const int& r);
 void freeVector(double* b);
 
 void MaxtrixTranspose(double** A, const int& r, const int& c);
-double** Matrixtranspose(const double** A, const int& r, const int& c);
+
 
 
 #endif /* SOLVERS_H_ */

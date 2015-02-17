@@ -351,20 +351,6 @@ void MaxtrixTranspose(double** A, const int& r, const int& c)
 
 }
 
-double** Matrixtranspose(const double** A, const int& r, const int& c)
-{
-	double** Atrans;
-	Atrans = emptyMatrix(r, c);
-	for(int i = 0; i < r; ++i)
-		{
-			for(int j = 0; j < c; ++j)
-			{
-				Atrans[c][r] = A[r][c];
-			}
-		}
-	return Atrans;
-}
-
 
 
 
