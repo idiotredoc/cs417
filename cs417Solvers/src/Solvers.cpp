@@ -169,8 +169,7 @@ void randomMatrix(int r, int c)
 	{
 		for(int j=0; j<c; ++j)
 		{
-			ran = rand() % 20000 + 1;
-			value = ran / 100.00;
+			value = rand() % 100 + 1;
 			A[i][j] = value;
 		}
 	}
@@ -201,8 +200,7 @@ void randomMatrix(int r, int c)
 	srand ( time(NULL) );
 	for(int i=0; i<r; ++i)
 	{
-		ran = rand() % 200 + 1;
-		value = ran / 100.00;
+		value = rand() % 100 + 1;
 		x[i] = value;
 	}
 
@@ -251,6 +249,9 @@ void randomMatrix(int r, int c)
 		out << b[i] << ' ';
 	}
 
+	freeMatrix(A, r);
+	freeVector(b);
+	freeVector(X);
 
 	out.close();
 }

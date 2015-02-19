@@ -19,6 +19,11 @@ using std::ifstream;
 
 int main()
 {
+	double **A, *x, *b;
+
+	int n, m;
+	n = m = 1;
+
 	char choice;
 	std::string garb, filename;
 
@@ -31,7 +36,8 @@ int main()
 	{
 		cout << "1. Random Matrix\n"
 			 << "2. Load Matrix from file\n"
-			 << "Enter 'Q' to quit...\n";
+			 << "Enter 'Q' to quit...\n"
+			 << ">> ";
 		cin >> choice;
 		getline(cin, garb);
 	}
@@ -39,16 +45,57 @@ int main()
 
 	if(choice == '1')
 	{
+		cout << "Matrix size(Rows Cols): ";
+		cin >> n, m;
+
 		cout << "Generating random matrix...\n"
 			 << "Saving Matrix to 'randomMatrix.txt...'\n"
 			 << "Saving X values to 'X.txt'...\n";
+
+		randomMatrix(n, m);
+		datid.open("randomMatrix.txt");
+		if(!datid)
+		{
+			cout << "File does not exist...\n";
+			cin.get();
+			return 1;
+		}
 	}
 	else if(choice == '2')
 	{
 		cout << "Enter file name: ";
-		cin >> filename;
+		getline(cin, filename);
 
 		datid.open( filename.c_str() );
+		if(!datid)
+		{
+			cout << "File does not exist...\n";
+			cin.get();
+			return 1;
+		}
+
+		datid >> n >> m;
+	}
+	else if( (choice == 'q') || (choice == 'Q') )
+	{
+		return 1;
+	}
+
+	A = emptyMatrix(n, m);
+	x = emptyVector(m);
+	b = emptyVector(m);
+
+	for(int i = 0; i < n; ++n)
+	{
+		for(int j = 0; i < m; ++j)
+		{
+			datid >> A[i][j];
+		}
+	}
+
+	for(int i = 0; i < n; ++n)
+	{
+		b[i];
 	}
 
 	return 0;
