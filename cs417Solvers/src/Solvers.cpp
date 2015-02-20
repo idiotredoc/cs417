@@ -111,6 +111,35 @@ double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c
 	return x;
 }
 
+void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c)
+{
+	double total, lowerC, upperC;
+
+		//i loop
+		for(int i=0; i<r; ++i)
+		{
+			total = lowerC = upperC = 0;
+
+			//Sum lowerC
+			for(int j = 0; j < i; ++j)
+			{
+				lowerC += A[i][j] * x[j];
+			}
+
+			//Sum upperC
+			for( int j = (i+1); j < r; ++j)
+			{
+				upperC += A[i][j] * x[j];
+			}
+
+			//Total for iteration
+			total = b[i] - lowerC - upperC;
+
+			//Update xk1[i]
+			x[i] = total / A[i][i];
+		}
+}
+
 double** emptyMatrix(const int& r, const int& c)
 {
 	double** A;
