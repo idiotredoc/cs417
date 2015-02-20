@@ -16,6 +16,8 @@ void    jacobi2(const double** A, const double* b, double* x, const int& r, cons
 double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c);
 void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c);
 
+double* SOR(double** a, double* b, double* x, const int& r, const int& c);
+
 double** emptyMatrix(const int& r, const int& c);
 double* emptyVector(const int& r);
 void randomMatrix();

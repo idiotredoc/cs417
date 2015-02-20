@@ -15,16 +15,12 @@
 double * jacobi(double** A, double* b, double* x, const int& r, const int& c )
 {
 	double* xk1;
-	xk1 = new double[r];
-	for(int i = 0; i < r; ++i)
-	{
-		xk1[i] = 0.0;
-	}
+	xk1 = emptyVector(c);
 
 	double total, lowerC, upperC;
 
 	//i loop
-	for(int i=0; i<r; ++i)
+	for(int i=0; i<c; ++i)
 	{
 		total = lowerC = upperC = 0;
 
@@ -53,20 +49,21 @@ double * jacobi(double** A, double* b, double* x, const int& r, const int& c )
 void jacobi2(const double** A, const double* b, double* x, const int& r, const int& c)
 {
 
+	double* xk1;
+	xk1 = emptyVector(c);
+
 	double total, lowerC, upperC;
 
 	//i loop
-	for(int i=0; i<r; ++i)
+	for(int i=0; i<c; ++i)
 	{
 		total = lowerC = upperC = 0;
-
-		//Sum lowerC
+			//Sum lowerC
 		for(int j = 0; j < i; ++j)
 		{
 			lowerC += A[i][j] * x[j];
 		}
-
-		//Sum upperC
+			//Sum upperC
 		for( int j = (i+1); j < r; ++j)
 		{
 			upperC += A[i][j] * x[j];
@@ -76,7 +73,7 @@ void jacobi2(const double** A, const double* b, double* x, const int& r, const i
 		total = b[i] - lowerC - upperC;
 
 		//Update xk1[i]
-		x[i] += total / A[i][i];
+		xk1[i] = total / A[i][i];
 	}
 }
 
@@ -85,7 +82,7 @@ double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c
 	double total, lowerC, upperC;
 
 	//i loop
-	for(int i=0; i<r; ++i)
+	for(int i=0; i<c; ++i)
 	{
 		total = lowerC = upperC = 0;
 
@@ -116,7 +113,7 @@ void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c
 	double total, lowerC, upperC;
 
 		//i loop
-		for(int i=0; i<r; ++i)
+		for(int i=0; i<c; ++i)
 		{
 			total = lowerC = upperC = 0;
 
@@ -138,6 +135,26 @@ void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c
 			//Update xk1[i]
 			x[i] = total / A[i][i];
 		}
+}
+
+double* SOR(double** a, double* b, double* x, const int& r, const int& c)
+{
+	double* xk1;
+	double total, lowerC, upperC, w;
+
+	w = 1.4;
+
+	xk1 = emptyVector(c);
+
+	for(int i =0; i < c; ++i)
+	{
+		total = lowerC = upperC = 0;
+
+
+	}
+
+
+	return x;
 }
 
 double** emptyMatrix(const int& r, const int& c)
