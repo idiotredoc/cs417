@@ -19,10 +19,10 @@ double* emptyVector(const int& r);
 void randomMatrix();
 void randomMatrix(int, int);
 
-void printMatrix(const double ** A, int r, int c);
-void printMatrix(iostream out, const double** A, const int& r, const int& c);
+void printMatrix(double ** A, int r, int c);
+//void printMatrix(iostream out, const double** A, const int& r, const int& c);
 void printVector(const double * b, int r);
-void printVector(iostream out, const double* b, const int& r);
+//void printVector(iostream out, const double* b, const int& r);
 
 double error(const double* bGuess, const double* bAct, int row);
 

@@ -82,40 +82,33 @@ void jacobi2(const double** A, const double* b, double* x, const int& r, const i
 
 double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c)
 {
-	double* xk1;
-		xk1 = new double[r];
-		for(int i = 0; i < r; ++i)
+	double total, lowerC, upperC;
+
+	//i loop
+	for(int i=0; i<r; ++i)
+	{
+		total = lowerC = upperC = 0;
+
+		//Sum lowerC
+		for(int j = 0; j < i; ++j)
 		{
-			xk1[i] = x[i];
+			lowerC += A[i][j] * x[j];
 		}
 
-		double total, lowerC, upperC;
-
-		//i loop
-		for(int i=0; i<r; ++i)
+		//Sum upperC
+		for( int j = (i+1); j < r; ++j)
 		{
-			total = lowerC = upperC = 0;
-
-			//Sum lowerC
-			for(int j = 0; j < i; ++j)
-			{
-				lowerC += A[i][j] * xk1[j];
-			}
-
-			//Sum upperC
-			for( int j = (i+1); j < r; ++j)
-			{
-				upperC += A[i][j] * x[j];
-			}
-
-			//Total for iteration
-			total = b[i] - lowerC - upperC;
-
-			//Update xk1[i]
-			xk1[i] = total / A[i][i];
+			upperC += A[i][j] * x[j];
 		}
 
-		return xk1;
+		//Total for iteration
+		total = b[i] - lowerC - upperC;
+
+		//Update xk1[i]
+		x[i] = total / A[i][i];
+	}
+
+	return x;
 }
 
 double** emptyMatrix(const int& r, const int& c)
@@ -153,7 +146,6 @@ void randomMatrix()
 void randomMatrix(int r, int c)
 {
 	double ** A, * b, *x;
-	int ran;
 	double value;
 
 	//Allocate A[r][c]
@@ -251,13 +243,13 @@ void randomMatrix(int r, int c)
 
 	freeMatrix(A, r);
 	freeVector(b);
-	freeVector(X);
+	freeVector(x);
 
 	out.close();
 }
 
 
-void printMatrix(const double ** A, int r, int c)
+void printMatrix(double ** A, int r, int c)
 {
 	std::cout << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
@@ -266,20 +258,21 @@ void printMatrix(const double ** A, int r, int c)
 		{
 			std::cout << A[i][j] << ' ';
 		}
+		std::cout << '\n';
 	}
 }
 
 
 void printVector(const double * b, int r)
 {
-	std::cout << "Matrix:\n";
+	std::cout << "Vector:\n";
 	for(int i = 0; i < r; ++i)
 	{
-		std::cout << b[i] << ' ';
+		std::cout << b[i] << '\n';
 	}
 }
 
-void printMatrix(std::ofstream out, const double** A, const int& r, const int& c)
+/*void printMatrix(std::ofstream out, const double** A, const int& r, const int& c)
 {
 	out << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
@@ -289,15 +282,15 @@ void printMatrix(std::ofstream out, const double** A, const int& r, const int& c
 			out << A[i][j] << ' ';
 		}
 	}
-}
-void printVector(std::ofstream out, const double* b, const int& r)
+}*/
+/*void printVector(std::ofstream out, const double* b, const int& r)
 {
 	out << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
 	{
 		out << b[i] << ' ';
 	}
-}
+}*/
 
 
 double error(const double* bGuess, const double* bAct, int row)
@@ -328,7 +321,7 @@ void freeMatrix(double** A, const int& r)
 	delete [] A;
 }
 
-void freeVector(double* b, const int& r)
+void freeVector(double* b)
 {
 	delete [] b;
 }

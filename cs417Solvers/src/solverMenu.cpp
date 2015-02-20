@@ -32,6 +32,31 @@ int main()
 
 	cout << "***CS 417 Solvers***\n";
 
+	/*randomMatrix(2, 3);
+
+	A = emptyMatrix(2, 3);
+	x = emptyVector(3);
+	b = emptyVector(2);
+
+	datid.open("randomMatrix.txt");
+	datid >> n >> m;
+	for(int i = 0; i < n; ++i)
+	{
+		for(int j = 0; j < m; ++j)
+		{
+			datid >> A[i][j];
+		}
+	}
+
+	for(int i = 0; i < n; ++i)
+	{
+		datid >> b[i];
+	}
+
+	printMatrix(A, n, m);
+	printVector(b, n);*/
+
+
 	do
 	{
 		cout << "1. Random Matrix\n"
@@ -46,7 +71,7 @@ int main()
 	if(choice == '1')
 	{
 		cout << "Matrix size(Rows Cols): ";
-		cin >> n, m;
+		cin >> n >> m;
 
 		cout << "Generating random matrix...\n"
 			 << "Saving Matrix to 'randomMatrix.txt...'\n"
@@ -73,30 +98,57 @@ int main()
 			cin.get();
 			return 1;
 		}
-
-		datid >> n >> m;
 	}
 	else if( (choice == 'q') || (choice == 'Q') )
 	{
 		return 1;
 	}
 
+	datid >> n >> m;
 	A = emptyMatrix(n, m);
 	x = emptyVector(m);
-	b = emptyVector(m);
+	b = emptyVector(n);
 
-	for(int i = 0; i < n; ++n)
+	cout << "A:\n";
+	for(int i = 0; i < n; ++i)
 	{
-		for(int j = 0; i < m; ++j)
+		for(int j = 0; j < m; ++j)
 		{
 			datid >> A[i][j];
+			cout << A[i][j] << ' ';
 		}
+		cout << endl;
 	}
 
-	for(int i = 0; i < n; ++n)
+	cout << "b:\n";
+	for(int i = 0; i < n; ++i)
 	{
-		b[i];
+		datid >> b[i];
+		cout << b[i]<< endl;
 	}
+
+	double* temp;
+	temp = x;
+	x = jacobi(A, b, x, n, m);
+	freeVector(temp);
+	printVector(x, m);
+
+	temp = x;
+	x = jacobi(A, b, x, n, m);
+	freeVector(temp);
+	printVector(x, m);
+
+	temp = x;
+	x = jacobi(A, b, x, n, m);
+	freeVector(temp);
+	printVector(x, m);
+
+	temp = x;
+	x = jacobi(A, b, x, n, m);
+	freeVector(temp);
+	printVector(x, m);
+
+	datid.close();
 
 	return 0;
 }
