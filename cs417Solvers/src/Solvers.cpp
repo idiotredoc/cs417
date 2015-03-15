@@ -137,7 +137,7 @@ void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c
 		}
 }
 
-double* SOR(double** a, double* b, double* x, const int& r, const int& c)
+double* SOR(double** A, double* b, double* x, const int& r, const int& c)
 {
 	double* xk1;
 	double total, lowerC, upperC, w;
@@ -149,12 +149,27 @@ double* SOR(double** a, double* b, double* x, const int& r, const int& c)
 	for(int i =0; i < c; ++i)
 	{
 		total = lowerC = upperC = 0;
+		//Sum lowerC
+		for(int j = 0; j < i; ++j)
+		{
+			lowerC += A[i][j] * x[j];
+		}
 
+		//Sum upperC
+		for( int j = (i+1); j < r; ++j)
+		{
+			upperC += A[i][j] * x[j];
+		}
+
+		//Total for iteration
+		total = b[i] - lowerC - upperC;
+
+		xk1[i] = (1-w)*x[i] + ( (w/A[i][i]) * total );
 
 	}
 
 
-	return x;
+	return xk1;
 }
 
 double** emptyMatrix(const int& r, const int& c)
