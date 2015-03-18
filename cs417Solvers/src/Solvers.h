@@ -8,7 +8,6 @@
 #ifndef SOLVERS_H_
 #define SOLVERS_H_
 
-class iostream;
 
 double * jacobi(double** A, double* b, double* x, const int& r, const int& c);
 void    jacobi2(const double** A, const double* b, double* x, const int& r, const int& c);
@@ -24,9 +23,7 @@ void randomMatrix();
 void randomMatrix(int, int);
 
 void printMatrix(double ** A, int r, int c);
-//void printMatrix(iostream out, const double** A, const int& r, const int& c);
 void printVector(const double * b, int r);
-//void printVector(iostream out, const double* b, const int& r);
 
 double error(const double* bGuess, const double* bAct, int row);
 

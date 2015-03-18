@@ -333,26 +333,6 @@ void printVector(const double * b, int r)
 	}
 }
 
-/*void printMatrix(std::ofstream out, const double** A, const int& r, const int& c)
-{
-	out << "Matrix:\n";
-	for(int i = 0; i < r; ++i)
-	{
-		for(int j = 0; j < c; ++j)
-		{
-			out << A[i][j] << ' ';
-		}
-	}
-}*/
-/*void printVector(std::ofstream out, const double* b, const int& r)
-{
-	out << "Matrix:\n";
-	for(int i = 0; i < r; ++i)
-	{
-		out << b[i] << ' ';
-	}
-}*/
-
 
 double error(const double* bGuess, const double* bAct, int row)
 {
