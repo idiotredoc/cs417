@@ -11,6 +11,8 @@
 #include <fstream>
 #include "Solvers.h"
 
+double ERROR = 10^-5;
+
 int main()
 {
 	std::ifstream inputFile;
@@ -34,16 +36,27 @@ int main()
 	A = emptyMatrix(r, c);
 	b = emptyVector(r);
 	x = emptyVector(c);
-	while(inputFile)
+
+	//Read A
+	for(int i = 0; i < r; ++i)
 	{
-		for(int i = 0; i < r; ++i)
+		for(int j = 0; j < c; ++j)
 		{
-			for(int j = 0; j < c; ++j)
-			{
-				inputFile >> A[i][j];
-			}
+			inputFile >> A[i][j];
 		}
 	}
+
+	//Read b
+	for(int i = 0; i < r; ++i)
+	{
+		inputFile >> b[i];
+	}
+
+	while(false)
+	{
+
+	}
+
 
 	return 0;
 }

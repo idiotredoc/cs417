@@ -386,6 +386,54 @@ void MaxtrixTranspose(double** A, const int& r, const int& c)
 
 }
 
+double dotProduct(double* b, double* x, const int& r)
+{
+	double scalar = 0.0;
+	for(int i = 0; i < r; ++i)
+	{
+		scalar += b[i] * x[i];
+	}
+
+	return scalar;
+}
+
+double** crossProduct(double* b, double * x, const int& r)
+{
 
 
+	return NULL;
+}
 
+
+double* matVec(double** A, double* x, const int& r, const int& c)
+{
+	double *b;
+	b = emptyVector(r);
+	for(int i = 0; i < r; ++i)
+	{
+		for(int j = 0; j < c; ++j)
+		{
+			b[i] += A[i][j] * x[j];
+		}
+	}
+
+	return b;
+}
+
+//Pre: assumes NxN matrix.
+double** matMat(double** A, double** M, const int& r)
+{
+	double** newMat = emptyMatrix(r, r);
+	for(int i = 0; i < r; ++i)
+	{
+		for(int j = 0; j < r; ++j)
+		{
+			for(int k = 0; k < r; ++k)
+			{
+				newMat[i][j] += A[i][k] * M[k][j];
+			}
+		}
+	}
+
+	return newMat;
+}
