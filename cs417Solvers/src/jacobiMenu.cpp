@@ -11,7 +11,7 @@
 #include <fstream>
 #include "Solvers.h"
 
-double ERROR = 10^-5;
+double ERROR = .00001;
 
 int main()
 {
@@ -23,16 +23,18 @@ int main()
 	double** A;
 	double *b, *x, *temp, *guessB;
 
-	std::cout << "-------------CS417: Jacobi";
-	std::cout << "-------------\n\n";
+	std::cout << "======CS417: Jacobi";
+	std::cout << "======\n\n";
 
 	std::cout << "Enter file name: ";
 	std:: cin >> iFile;
 
 	inputFile.open( iFile.c_str() );
-	outputFile.open("output.txt");
+	outputFile.open("jacobiOutput.txt");
 
 	inputFile >> r >> c;
+
+	//Allocates the memory.
 	A = emptyMatrix(r, c);
 	b = emptyVector(r);
 	x = emptyVector(c);
@@ -45,9 +47,6 @@ int main()
 			inputFile >> A[i][j];
 		}
 	}
-	//output A to file.
-	printMatrix(outputFile, A, r, c);
-
 
 	//Read b
 	for(int i = 0; i < r; ++i)
@@ -58,16 +57,31 @@ int main()
 	printMatrix(A, r, c);
 	printVector(b, r);
 
+	//Initial Jacobi run
+	temp = x;
+	x = jacobi(A, b, x, r, c);
+	freeVector(temp);
 
-	for(int i = 0; i < 10; ++i)
+	guessB = matVec(A, x, r, c);
+	while(error(guessB, b, r) >= ERROR)
 	{
+		freeVector(guessB);
+
 		temp = x;
 		x = jacobi(A, b, x, r, c);
 		freeVector(temp);
 
+		guessB = matVec(A, x, r, c);
+
 		printVector(x, c);
 	}
 
+
+	//Free all the memory
+	freeMatrix(A, r);
+	freeVector(b);
+	freeVector(x);
+	freeVector(guessB);
 
 	return 0;
 }
