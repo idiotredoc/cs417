@@ -75,6 +75,9 @@ void jacobi2(const double** A, const double* b, double* x, const int& r, const i
 		//Update xk1[i]
 		xk1[i] = total / A[i][i];
 	}
+
+	freeVector(x);
+	x = xk1;
 }
 
 double* guassSeidel(double** A, double* b, double *x, const int& r, const int& c)
