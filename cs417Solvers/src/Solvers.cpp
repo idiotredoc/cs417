@@ -323,6 +323,18 @@ void printMatrix(double ** A, int r, int c)
 	}
 }
 
+void printMatrix(std::ostream& out, double** A, int r, int c)
+{
+	out << "Matrix:\n";
+	for(int i = 0; i < r; ++i)
+	{
+		for(int j = 0; j < c; ++j)
+		{
+			out << A[i][j] << ' ';
+		}
+		out << '\n';
+	}
+}
 
 void printVector(const double * b, int r)
 {
@@ -333,6 +345,14 @@ void printVector(const double * b, int r)
 	}
 }
 
+void printVector(std::ostream& out, const double* b, int r)
+{
+	out << "Vector:\n";
+	for(int i = 0; i < r; ++i)
+	{
+		out << b[i] << '\n';
+	}
+}
 
 double error(const double* bGuess, const double* bAct, int row)
 {

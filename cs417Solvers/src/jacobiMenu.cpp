@@ -30,6 +30,7 @@ int main()
 	std:: cin >> iFile;
 
 	inputFile.open( iFile.c_str() );
+	outputFile.open("output.txt");
 
 	inputFile >> r >> c;
 	A = emptyMatrix(r, c);
@@ -44,6 +45,9 @@ int main()
 			inputFile >> A[i][j];
 		}
 	}
+	//output A to file.
+	printMatrix(outputFile, A, r, c);
+
 
 	//Read b
 	for(int i = 0; i < r; ++i)
