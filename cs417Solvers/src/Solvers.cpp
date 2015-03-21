@@ -312,7 +312,7 @@ void randomMatrix(int r, int c)
 
 void printMatrix(double ** A, int r, int c)
 {
-	std::cout << "Matrix:\n";
+	//std::cout << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
 	{
 		for(int j = 0; j < c; ++j)
@@ -325,7 +325,7 @@ void printMatrix(double ** A, int r, int c)
 
 void printMatrix(std::ostream& out, double** A, int r, int c)
 {
-	out << "Matrix:\n";
+	//out << "Matrix:\n";
 	for(int i = 0; i < r; ++i)
 	{
 		for(int j = 0; j < c; ++j)
@@ -338,7 +338,7 @@ void printMatrix(std::ostream& out, double** A, int r, int c)
 
 void printVector(const double * b, int r)
 {
-	std::cout << "Vector:\n";
+	//std::cout << "Vector:\n";
 	for(int i = 0; i < r; ++i)
 	{
 		std::cout << b[i] << '\n';
@@ -347,7 +347,7 @@ void printVector(const double * b, int r)
 
 void printVector(std::ostream& out, const double* b, int r)
 {
-	out << "Vector:\n";
+	//out << "Vector:\n";
 	for(int i = 0; i < r; ++i)
 	{
 		out << b[i] << '\n';
