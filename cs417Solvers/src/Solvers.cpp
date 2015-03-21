@@ -405,7 +405,7 @@ double** crossProduct(double* b, double * x, const int& r)
 }
 
 
-double* matVec(double** A, double* x, const int& r, const int& c)
+double* matVec(double** A, double* x, int r, int c)
 {
 	double *b;
 	b = emptyVector(r);

@@ -21,16 +21,15 @@ int main()
 
 	int r, c;
 	double** A;
-	double *b, *x;
+	double *b, *x, *temp, *guessB;
 
-	std::cout << "CS417: Jacobi";
+	std::cout << "-------------CS417: Jacobi";
 	std::cout << "-------------\n\n";
 
-
-	std::cout >> "Enter File Name: ";
+	std::cout << "Enter file name: ";
 	std:: cin >> iFile;
 
-	inputFile.open(iFile.c_str() );
+	inputFile.open( iFile.c_str() );
 
 	inputFile >> r >> c;
 	A = emptyMatrix(r, c);
@@ -52,9 +51,17 @@ int main()
 		inputFile >> b[i];
 	}
 
-	while(false)
-	{
+	printMatrix(A, r, c);
+	printVector(b, r);
 
+
+	for(int i = 0; i < 10; ++i)
+	{
+		temp = x;
+		x = jacobi(A, b, x, r, c);
+		freeVector(temp);
+
+		printVector(x, c);
 	}
 
 

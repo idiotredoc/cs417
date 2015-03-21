@@ -33,7 +33,7 @@ void freeVector(double* b);
 void MaxtrixTranspose(double** A, const int& r, const int& c);
 double dotProduct(double* b, double* x, const int& r);
 double** crossProduct(double* b, double * x, const int& r);
-double* matVec(double** A, double* x, const int& r, const int& c);
+double* matVec(double** A, double* x, int r, int c);
 double** matMat(double** A, double** M, const int& r);
 
 

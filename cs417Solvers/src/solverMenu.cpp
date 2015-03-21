@@ -4,7 +4,7 @@
  *  Created on: Jan 24, 2015
  *      Author: Vanacore
  */
-
+/*
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -32,7 +32,7 @@ int main()
 
 	cout << "***CS 417 Solvers***\n";
 
-	/*randomMatrix(2, 3);
+	randomMatrix(2, 3);
 
 	A = emptyMatrix(2, 3);
 	x = emptyVector(3);
@@ -54,7 +54,7 @@ int main()
 	}
 
 	printMatrix(A, n, m);
-	printVector(b, n);*/
+	printVector(b, n);
 
 
 	do
@@ -152,3 +152,4 @@ int main()
 
 	return 0;
 }
+*/
