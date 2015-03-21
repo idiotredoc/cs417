@@ -17,7 +17,7 @@ int main()
 {
 	std::ifstream inputFile;
 	std::ofstream outputFile;
-	std::string iFile, oFile, garb;
+	std::string iFile;
 
 	int r, c;
 	double** A;
@@ -26,11 +26,13 @@ int main()
 	std::cout << "======CS417: Jacobi";
 	std::cout << "======\n\n";
 
+	//Assumes file exist
 	std::cout << "Enter file name: ";
 	std:: cin >> iFile;
 
+	//Opens files, so the input file better exist.
 	inputFile.open( iFile.c_str() );
-	outputFile.open("jacobiOutput.txt");
+	outputFile.open("jacobiOutput.txt"); //output file for the jacobi solver.
 
 	inputFile >> r >> c;
 
@@ -54,8 +56,8 @@ int main()
 		inputFile >> b[i];
 	}
 
-	printMatrix(A, r, c);
-	printVector(b, r);
+	printMatrix(outputFile, A, r, c);
+	printVector(outputFile, b, r);
 
 	//Initial Jacobi run
 	temp = x;
