@@ -22,6 +22,7 @@ int main()
 	int r, c;
 	double** A;
 	double *b, *x, *temp, *guessB;
+	int index = 0;
 
 	std::cout << "======CS417: Jacobi";
 	std::cout << "======\n\n";
@@ -56,15 +57,30 @@ int main()
 		inputFile >> b[i];
 	}
 
+	//Print A and b.
+	outputFile << "A:\n";
 	printMatrix(outputFile, A, r, c);
+	outputFile << "b:\n";
 	printVector(outputFile, b, r);
+	outputFile << '\n';
 
 	//Initial Jacobi run
 	temp = x;
 	x = jacobi(A, b, x, r, c);
 	freeVector(temp);
-
 	guessB = matVec(A, x, r, c);
+
+	//Print iteration 0: x, and error!
+	outputFile << "============\n";
+	outputFile << "Iteration: " << index;
+	outputFile << "\n============\n";
+
+	outputFile << "x:\n";
+	printVector(outputFile, x, c);
+
+	outputFile << "Error: " << error(guessB, b, r) * 100 << "%\n\n";
+
+	++index;
 	while(error(guessB, b, r) >= ERROR)
 	{
 		freeVector(guessB);
@@ -75,8 +91,22 @@ int main()
 
 		guessB = matVec(A, x, r, c);
 
-		printVector(x, c);
+		//Print iteration index: x, and error!
+		outputFile << "============\n";
+		outputFile << "Iteration: " << index;
+		outputFile << "\n============\n";
+
+		outputFile << "x:\n";
+		printVector(outputFile, x, c);
+
+		outputFile << "Error: " << error(guessB, b, r) * 100 << "%\n\n";
+
+		++index;
 	}
+
+	std::cout << "Results printed to jacobiOutput.txt...\n";
+	std::cin.get();
+	std::cin.get();
 
 
 	//Free all the memory
