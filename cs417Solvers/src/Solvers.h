@@ -39,5 +39,10 @@ double** crossProduct(double* b, double * x, const int& r);
 double* matVec(double** A, double* x, int r, int c);
 double** matMat(double** A, double** M, const int& r);
 
+void rowSwap(double** A, const int& swap1, const int& swap2);
+void scalar(double** A, const double& scalar, const int& r, const int& c);
+void scalar(double* b,const double& scalar, const int& r);
+void addRows(double** A, const int& replacedRow, const int& addedRow, const int& c);
+
 
 #endif /* SOLVERS_H_ */

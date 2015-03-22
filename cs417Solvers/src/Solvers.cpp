@@ -460,3 +460,37 @@ double** matMat(double** A, double** M, const int& r)
 
 	return newMat;
 }
+
+
+void rowSwap(double** A, const int& swap1, const int& swap2)
+{
+	double* temp = A[swap1-1];
+	A[swap1-1] = A[swap2-1];
+	A[swap2-1] = temp;
+}
+
+
+void scalar(double** A, const double& scalar, const int& r, const int& c)
+{
+	for(int i = 0; i < r; ++i)
+	{
+		for(int j = 0; j < c; ++j)
+		{
+			A[i][j] *= scalar;
+		}
+	}
+}
+void scalar(double* b, const double& scalar, const int& r)
+{
+	for(int i = 0; i < r; ++i)
+	{
+		b[i] *= scalar;
+	}
+}
+void addRows(double** A, const int& replacedRow, const int& addedRow, const int& c)
+{
+	for(int i = 0; i < c; ++i)
+	{
+		A[replacedRow-1][i] += A[addedRow-1][i];
+	}
+}
