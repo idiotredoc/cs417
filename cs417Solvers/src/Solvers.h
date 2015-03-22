@@ -18,8 +18,11 @@ void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c
 
 double* SOR(double** a, double* b, double* x, const int& r, const int& c);
 
+//Post: allocates matrix of size rxc (All values are 0).
 double** emptyMatrix(const int& r, const int& c);
+//Post: allocates vector of size rx1 (All values are 0).
 double* emptyVector(const int& r);
+
 void randomMatrix();
 void randomMatrix(int, int);
 
