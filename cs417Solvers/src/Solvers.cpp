@@ -494,6 +494,7 @@ void addRows(double** A, const int& replacedRow, const int& addedRow, const int&
 	}
 }
 
+//This will require much more thought. Be back later. Do not call this function.
 void upperTriangular(double** A, double* b, const int& r, const int& c)
 {
 	double scale = 1;
@@ -510,13 +511,16 @@ void upperTriangular(double** A, double* b, const int& r, const int& c)
 					if(A[k][col] != 0)
 					{
 						rowSwap(A, row+1, k+1);
+						break;
 					}
-					break;
 				}
 			}
 
 			//START THE ROW OPERATIONS!
 			scale = 1/A[row][col];
+			scalar(A[row+1], scale, c);
+
+
 
 		}
 	}

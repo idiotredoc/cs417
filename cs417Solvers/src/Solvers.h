@@ -47,6 +47,7 @@ void scalar(double** A, const double& scalar, const int& r, const int& c);
 void scalar(double* b,const double& scalar, const int& r);
 void addRows(double** A, const int& replacedRow, const int& addedRow, const int& c);
 
+//Do not call this function.
 void upperTriangular(double** A, double* b, const int& r, const int& c);
 
 
