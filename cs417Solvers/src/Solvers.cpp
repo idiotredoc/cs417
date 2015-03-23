@@ -469,7 +469,6 @@ void rowSwap(double** A, const int& swap1, const int& swap2)
 	A[swap2-1] = temp;
 }
 
-
 void scalar(double** A, const double& scalar, const int& r, const int& c)
 {
 	for(int i = 0; i < r; ++i)
@@ -493,4 +492,31 @@ void addRows(double** A, const int& replacedRow, const int& addedRow, const int&
 	{
 		A[replacedRow-1][i] += A[addedRow-1][i];
 	}
+}
+
+void upperTriangular(double** A, const int& r, const int& c)
+{
+	double scale = 1;
+
+	for(int j = 0; j < c; ++j)
+	{
+
+		//Swap r with non-zero row.
+		if(A[0][0] == 0)
+		{
+			for(int i = 1; i < r; ++i)
+			{
+				if(A[i][j] != 0)
+				{
+					rowSwap(A, 1, i+1);
+				}
+			}
+		}
+
+		scale = 1/A[0][0];
+		for(int i = 0; i;)
+		{
+			//Broken, but I have to go...
+		}
+		scalar(A[1], scale, 1);
 }
