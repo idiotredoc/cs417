@@ -18,6 +18,8 @@ void   guassSeidel2(double** A, double* b, double *x, const int& r, const int& c
 
 double* SOR(double** a, double* b, double* x, const int& r, const int& c);
 
+double* gaussianElimination(double** A, double* b, const int& ROW, const int& COL);
+
 //Post: allocates matrix of size rxc (All values are 0).
 double** emptyMatrix(const int& r, const int& c);
 //Post: allocates vector of size rx1 (All values are 0).

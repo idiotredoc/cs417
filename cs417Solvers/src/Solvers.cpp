@@ -175,6 +175,24 @@ double* SOR(double** A, double* b, double* x, const int& r, const int& c)
 	return xk1;
 }
 
+double* gaussianElimination(double** A, double* b, const int& ROW, const int& COL)
+{
+	double* x;
+	x = emptyVector(COL);
+	double sum = 0;
+	for(int i = ROW-1; i >=0; --i)
+	{
+		sum = 0;
+		for(int j = i+1; j < ROW; ++j)
+		{
+			sum += A[i][j] * x[j];
+		}
+
+		x[i] = b[i] - sum;
+	}
+	return x;
+}
+
 double** emptyMatrix(const int& r, const int& c)
 {
 	double** A;
