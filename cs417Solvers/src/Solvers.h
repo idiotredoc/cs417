@@ -47,7 +47,7 @@ void scalar(double** A, const double& scalar, const int& r, const int& c);
 void scalar(double* b,const double& scalar, const int& r);
 void addRows(double** A, const int& replacedRow, const int& addedRow, const int& c);
 
-void upperTriangular(double** A, const int& r, const int& c);
+void upperTriangular(double** A, double* b, const int& r, const int& c);
 
 
 #endif /* SOLVERS_H_ */

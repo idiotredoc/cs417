@@ -494,29 +494,38 @@ void addRows(double** A, const int& replacedRow, const int& addedRow, const int&
 	}
 }
 
-void upperTriangular(double** A, const int& r, const int& c)
+void upperTriangular(double** A, double* b, const int& r, const int& c)
 {
 	double scale = 1;
 
-	for(int j = 0; j < c; ++j)
+	for(int col = 0; col < c; ++col)
 	{
-
-		//Swap r with non-zero row.
-		if(A[0][0] == 0)
+		for(int row = 0; row < r; ++row)
 		{
-			for(int i = 1; i < r; ++i)
+			//Swap for a non-zero row at index A[row][col]
+			if(A[row][col] == 0)
 			{
-				if(A[i][j] != 0)
+				for(int k = row+1; k < r; ++k)
 				{
-					rowSwap(A, 1, i+1);
+					if(A[k][col] != 0)
+					{
+						rowSwap(A, row+1, k+1);
+					}
+					break;
 				}
 			}
-		}
 
-		scale = 1/A[0][0];
-		for(int i = 0; i;)
-		{
-			//Broken, but I have to go...
+			//START THE ROW OPERATIONS!
+			scale = 1/A[row][col];
+
 		}
-		scalar(A[1], scale, 1);
+	}
 }
+
+
+
+
+
+
+
+
