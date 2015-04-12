@@ -20,6 +20,8 @@ double* SOR(double** a, double* b, double* x, const int& r, const int& c);
 
 double* gaussianElimination(double** A, double* b, const int& ROW, const int& COL);
 
+double newton(const double& f, const double& fp);
+
 //Post: allocates matrix of size rxc (All values are 0).
 double** emptyMatrix(const int& r, const int& c);
 //Post: allocates vector of size rx1 (All values are 0).
@@ -51,6 +53,10 @@ void addRows(double** A, const int& replacedRow, const int& addedRow, const int&
 
 //Do not call this function.
 void upperTriangular(double** A, double* b, const int& r, const int& c);
+
+//Functions for root solver
+double f(const double& x);
+double fprime(const double& x);
 
 
 #endif /* SOLVERS_H_ */

@@ -193,6 +193,11 @@ double* gaussianElimination(double** A, double* b, const int& ROW, const int& CO
 	return x;
 }
 
+double newton(const double& f, const double& fp)
+{
+	return f/fp;
+}
+
 double** emptyMatrix(const int& r, const int& c)
 {
 	double** A;
@@ -544,9 +549,16 @@ void upperTriangular(double** A, double* b, const int& r, const int& c)
 	}
 }
 
+//Redefine these functions as needed
+double f(const double& x)
+{
+	return std::pow(x, 3) + std::pow(x, 2) + x;
+}
 
-
-
+double fprime(const double& x)
+{
+	return 3*(std::pow(x, 2)) + 2*(x);
+}
 
 
 

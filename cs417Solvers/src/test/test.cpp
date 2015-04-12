@@ -6,7 +6,7 @@
  */
 #include <iostream>
 #include "C:\Users\Matthew\git\cs417\cs417Solvers\src\Solvers.h"
-
+const double ERROR = .00001;
 
 /*
  * This will only work on my computer.
@@ -14,18 +14,12 @@
  */
 int main()
 {
-	double** A;
-	A = emptyMatrix(2, 2);
-	A[0][0] = 1;
-	A[0][1] = 1;
+	double x = 1;
 
-	rowSwap(A, 1, 2);
-	printMatrix(A, 2, 2);
-	addRows(A, 1, 2, 2);
-	std::cout << '\n';
-	printMatrix(A, 2, 2);
-	std::cout << '\n';
-	scalar(A[1], 5, 2);
-	printMatrix(A, 2, 2);
+	for(int i = 0; i < 100; ++i)
+	{
+		x= x - newton(f(x), fprime(x));
+		std::cout << x << '\n';
+	}
 	return 0;
 }
