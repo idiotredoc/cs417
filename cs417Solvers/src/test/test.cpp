@@ -12,7 +12,7 @@ const double ERROR = .00001;
  * This will only work on my computer.
  * To resolve, change the include path for Solvers.h.
  */
-int main()
+/*int main()
 {
 	double x = 1;
 
@@ -23,3 +23,4 @@ int main()
 	}
 	return 0;
 }
+*/

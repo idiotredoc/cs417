@@ -5,7 +5,7 @@
  *  Created on: Mar 18, 2015
  *      Author: mvanacor
  */
-/*
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -58,11 +58,11 @@ int main()
 	}
 
 	//Print A and b.
-	outputFile << "A:\n";
+	/*outputFile << "A:\n";
 	printMatrix(outputFile, A, r, c);
 	outputFile << "b:\n";
 	printVector(outputFile, b, r);
-	outputFile << '\n';
+	outputFile << '\n';*/
 
 	//Initial Jacobi run
 	temp = x;
@@ -104,6 +104,7 @@ int main()
 		++index;
 	}
 
+
 	std::cout << "Results printed to jacobiOutput.txt...\n";
 	std::cin.get();
 	std::cin.get();
@@ -117,4 +118,3 @@ int main()
 
 	return 0;
 }
-*/
